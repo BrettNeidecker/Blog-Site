@@ -10,7 +10,7 @@ app.use(express.json()); // Middleware to parse JSON
 
 //Allow requests from specific origins
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://dulcet-strudel-229609.netlify.app/register'], // Frontend URLs
+	origin: ['https://localhost:3000', 'https://dulcet-strudel-229609.netlify.app'],  // Frontend URLs
     methods: 'GET,POST,PUT,DELETE', // Specify allowed methods
     credentials: true,              // Enable if you need to include cookies
 }));
@@ -26,5 +26,10 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
 
+//for testing
+app.get('/', (req, res) => {
+    res.send('Server is up and running!');
+});
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));

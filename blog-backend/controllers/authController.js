@@ -4,6 +4,7 @@ const User = require('../models/User');
 
 // Register a new user
 exports.register = async (req, res) => {
+    console.log("Recieved registration request:", req.body); //Log incoming request
     const { username, email, password } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
