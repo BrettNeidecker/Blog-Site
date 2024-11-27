@@ -10,16 +10,13 @@ app.use(express.json()); // Middleware to parse JSON
 
 //Allow requests from specific origins
 app.use(cors({
-	origin: ['https://api.linguica.org', 'https://linguica.org'],  // Frontend URLs
+	origin: ['https://api.linguica.org', 'https://linguica.org', 'localhost:3000'],  // Frontend URLs
     methods: 'GET,POST,PUT,DELETE', // Specify allowed methods
     credentials: true,              // Enable if you need to include cookies
 }));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('MongoDB connected'))
+mongoose.connect(process.env.MONGO_URI).then(() => console.log('MongoDB connected'))
   .catch(err => console.log('Database connection error:', err));
 
 // Routes

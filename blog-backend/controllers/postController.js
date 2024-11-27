@@ -23,6 +23,7 @@ exports.getPosts = async (req, res) => {
     try {
         // Find the user by username from the URL parameters
         const user = await User.findOne({ username: req.params.username });
+	console.log('Fetching posts for username:', req.params.username);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
