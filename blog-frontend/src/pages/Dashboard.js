@@ -10,7 +10,7 @@ function Dashboard() {
         const fetchPosts = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts/${username}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setPosts(response.data);
